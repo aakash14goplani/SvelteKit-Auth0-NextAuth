@@ -13,7 +13,7 @@
 	<h1>Overview</h1>
 	<p>You're now logged in!</p>
 	{#if data.session?.user}
-		<p>Customized Date to be displayed here...</p>
+		<p>Customized Data to be displayed here...</p>
 	{/if}
 </section>
 

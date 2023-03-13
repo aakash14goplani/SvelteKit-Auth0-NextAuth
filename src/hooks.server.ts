@@ -7,12 +7,12 @@ const config: SvelteKitAuthConfig = {
     id: 'auth0',
     name: 'Auth0',
     type: 'oidc',
-    clientId: 'm9wAwrjRgERFJNc0WxkDXkQUZ5BVeJTQ',
-    clientSecret: '6-X5HgqJpzPGe87QlUjDB_0rMP7ql6EIp4LfNe15jOtcC0c2I4JoQivrkhWmYscC',
+    clientId: import.meta.env.VITE_CLIENT_ID,
+    clientSecret: import.meta.env.VITE_CLIENT_SECRET,
     issuer: 'https://dev-24ovxhwj2j6opsex.us.auth0.com/',
     wellKnown: 'https://dev-24ovxhwj2j6opsex.us.auth0.com/.well-known/openid-configuration'
   }],
-  secret: 'cfc1bb18fc9ba615ea8a3f6db2df089c',
+  secret: import.meta.env.VITE_VERCEL_SECRET,
   debug: false,
   session: {
     updateAge: 900, // 15 mins
