@@ -1,35 +1,52 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
-	import { onMount } from "svelte";
-	import type { PageData } from "./$types";
-
-	export let data: PageData;
-
-	onMount(() => {
-		if (data.session?.user) {
-			// if user is logged-in redirect to root page
-			goto('/app');
-		}
-	});
+	import { page } from '$app/stores';
+	import { signIn, signOut } from '@auth/sveltekit/client';
 </script>
 
-<svelte:head>
-	<title>SvelteKit Auth</title>
-	<meta name='description' content='Authentication with SvelteKit Auth' />
-</svelte:head>
+<div class="content">
+	<h2>Client Side Flow</h2>
 
-<section class="generic-content">
-	<h1>Authentication with Sveltekit Auth</h1>
-	<div>
-		<p>You're on Public (un-protected) page.</p>
-		<p>Login to view contents of the home page.</p>
-	</div>
-</section>
+	<p>
+		This page deals with client side sign-in and sign-out. For server-side, redirect to <a
+			href="/login">/login</a
+		>.
+	</p>
+
+	<p>
+		{#if $page.data.session && Object.keys($page.data?.session?.user || {}).length}
+			<div class="signedin">
+				<span>Signed in as</span>
+				<strong>Email: {$page.data.session.user.email}</strong>
+				<strong>Name: {$page.data.session.user.name}</strong>
+				<button on:click={() => signOut()} class="button">Sign out</button>
+				<p>Since you are logged-in, you can access <a href="/about-us">protected routes</a></p>
+			</div>
+		{:else}
+			<span class="notSignedInText">You are not signed in</span>
+			<button
+				on:click={() => signIn('auth0', { redirect: false }, { scope: 'api openid profile email' })}
+			>
+				<span>Sign In with Auth0</span>
+			</button>
+			<p>Since you are logged-out, you cannot access <a href="/about-us">protected routes</a></p>
+		{/if}
+	</p>
+</div>
 
 <style lang="scss">
-	.generic-content {
+	.content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		font-size: 1.6rem;
+		line-height: 2rem;
+		padding: 2rem;
+
+		.signedin {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			line-height: 2rem;
+		}
 	}
 </style>

@@ -1,7 +1,7 @@
-import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
-export const load = (async ({ fetch, locals }) => {
+export const load = (async ({ fetch, locals, url: _url }) => {
 	let url = '';
 	try {
 		const session = await locals.getSession();
@@ -11,11 +11,12 @@ export const load = (async ({ fetch, locals }) => {
 			const csrfToken = csrfTokenResponse.csrfToken;
 
 			const params = new URLSearchParams();
-      params.append('scope', 'api openid profile email');
+			params.append('scope', 'api openid profile email');
 
 			const formData = new URLSearchParams();
-			formData.append('redirect', 'false');
+			formData.append('redirect', 'true');
 			formData.append('csrfToken', csrfToken);
+			formData.append('callbackUrl', `${_url.origin}/login`);
 
 			const signInRequest = await fetch('/auth/signin/auth0? ' + params.toString(), {
 				method: 'POST',
@@ -36,6 +37,7 @@ export const load = (async ({ fetch, locals }) => {
 	}
 
 	if (url) {
+		console.log('Auto login user: ', url);
 		throw redirect(302, url);
 	}
 }) satisfies PageServerLoad;

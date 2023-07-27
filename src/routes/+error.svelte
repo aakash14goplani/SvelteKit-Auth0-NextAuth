@@ -7,7 +7,7 @@
 	 * redirect user to root page
 	 */
 
-  let timeoutId: NodeJS.Timeout;
+  let timeoutId: any;
 
 	onMount(() => {
     timeoutId = setTimeout(() => goto('/'), 2000);
