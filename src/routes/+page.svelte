@@ -13,7 +13,7 @@
 	</p>
 
 	<p>
-		{#if $page.data.session && Object.keys($page.data?.session?.user || {}).length}
+		{#if $page.data.session?.user && Object.keys($page.data?.session?.user || {}).length}
 			<div class="signedin">
 				<span>Signed in as</span>
 				<strong>Email: {$page.data.session.user.email}</strong>

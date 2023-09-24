@@ -11,7 +11,7 @@
 			sessionStorage.setItem('reloadApp', 'true');
 			window.location.reload();
 		}
-		if (!$page.data.session?.user.access_token) {
+		if (!$page.data.session?.user?.access_token) {
 			setTimeout(() => {
 				goto('/');
 				sessionStorage.removeItem('reloadApp');
@@ -19,7 +19,7 @@
 		}
 		
 		/*
-		const idToken = $page.data?.session?.user.id_token as string;
+		const idToken = $page.data?.session?.user?.id_token as string;
 		window.location.href =
 			import.meta.env.VITE_ISSUER +
 			`oidc/logout?post_logout_redirect_uri=${encodeURIComponent(
