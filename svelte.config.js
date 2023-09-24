@@ -10,8 +10,10 @@ const config = {
 			sourceMap: true
 		})
 	],
-
 	kit: {
+		paths: {
+			base: '/hello'
+		},
 		adapter: adapter(),
 		alias: {
 			$src: './src',
