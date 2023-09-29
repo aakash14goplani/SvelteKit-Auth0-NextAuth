@@ -13,7 +13,6 @@ const config: SvelteKitAuthConfig = {
 			wellKnown: import.meta.env.VITE_WELL_KNOWN
 		}
 	],
-	prefix: '/hello',
 	secret: '6022bea8-c8c8-4de1-89d9-3d8adae84802',
 	debug: true,
 	session: {

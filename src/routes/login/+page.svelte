@@ -7,7 +7,7 @@
 
 	<p>
 		This page deals with server side sign-in. As soon as you land on this page, you'll be
-		authenticated. For server-side logout, redirect to <a href="/logout">/logout</a>.
+		authenticated. For server-side logout, redirect to <a href="/hello/logout">/logout</a>.
 	</p>
 
 	<p>

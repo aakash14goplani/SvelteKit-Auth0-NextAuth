@@ -13,7 +13,7 @@
 		}
 		if (!$page.data.session?.user?.access_token) {
 			setTimeout(() => {
-				goto('/');
+				goto('/hello');
 				sessionStorage.removeItem('reloadApp');
 			}, 5000);
 		}

@@ -6,7 +6,7 @@ export const load = (async ({ fetch, locals, url: _url }) => {
 	try {
 		const session = await locals.getSession();
 		if (!session?.user) {
-			const tokenCall = await fetch('/auth/csrf');
+			const tokenCall = await fetch('/hello/auth/csrf');
 			const csrfTokenResponse = await new Response(tokenCall.body).json();
 			const csrfToken = csrfTokenResponse.csrfToken;
 
@@ -16,9 +16,9 @@ export const load = (async ({ fetch, locals, url: _url }) => {
 			const formData = new URLSearchParams();
 			formData.append('redirect', 'true');
 			formData.append('csrfToken', csrfToken);
-			formData.append('callbackUrl', `${_url.origin}/login`);
+			formData.append('callbackUrl', `${_url.origin}/hello/login`);
 
-			const signInRequest = await fetch('/auth/signin/auth0? ' + params.toString(), {
+			const signInRequest = await fetch('/hello/auth/signin/auth0? ' + params.toString(), {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',

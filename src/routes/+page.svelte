@@ -8,7 +8,7 @@
 
 	<p>
 		This page deals with client side sign-in and sign-out. For server-side, redirect to <a
-			href="/login">/login</a
+			href="/hello/login">/login</a
 		>.
 	</p>
 
@@ -19,7 +19,7 @@
 				<strong>Email: {$page.data.session.user.email}</strong>
 				<strong>Name: {$page.data.session.user.name}</strong>
 				<button on:click={() => signOut()} class="button">Sign out</button>
-				<p>Since you are logged-in, you can access <a href="/about-us">protected routes</a></p>
+				<p>Since you are logged-in, you can access <a href="/hello/about-us">protected routes</a></p>
 			</div>
 		{:else}
 			<span class="notSignedInText">You are not signed in</span>
@@ -28,7 +28,7 @@
 			>
 				<span>Sign In with Auth0</span>
 			</button>
-			<p>Since you are logged-out, you cannot access <a href="/about-us">protected routes</a></p>
+			<p>Since you are logged-out, you cannot access <a href="/hello/about-us">protected routes</a></p>
 		{/if}
 	</p>
 </div>

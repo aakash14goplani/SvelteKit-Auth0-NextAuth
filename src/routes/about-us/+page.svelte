@@ -6,7 +6,7 @@
 	onMount(() => {
 		// client-side guard, for server-side guard, refer hooks.server.ts
 		if (!$page?.data?.session?.user?.access_token) {
-			goto('/');
+			goto('/hello');
 		}
 	})
 </script>
